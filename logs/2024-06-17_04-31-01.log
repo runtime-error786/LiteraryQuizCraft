@@ -1,0 +1,3 @@
+2024-06-17 04:31:01,631 - logger - logger.py - Line: 48 - Task: MCQs retrieved from LLM model | Folder: C:\Users\musta\OneDrive\Desktop\MCQ_generator | File: StreamlitApp.py | Line: 46
+2024-06-17 04:31:01,643 - logger - logger.py - Line: 48 - Task: User downloaded CSV file | Folder: C:\Users\musta\OneDrive\Desktop\MCQ_generator | File: StreamlitApp.py | Line: 51
+2024-06-17 04:31:01,646 - logger - logger.py - Line: 48 - Task: Review displayed to the user | Folder: C:\Users\musta\OneDrive\Desktop\MCQ_generator | File: StreamlitApp.py | Line: 56

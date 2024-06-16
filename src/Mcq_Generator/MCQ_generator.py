@@ -39,8 +39,7 @@ Quiz_MCQs:
 
 Check from an expert English Writer of the above quiz:
 
-only give MCQS as json data with proper format complete json data not give any starting line which is not part of mcqs not give any extra line like here are mcq
-complete json data not miss any single bracket and give complete mcqs with proper choices each has 4 choices and 1 correct 
+only give short explanation of bove quiz whereter it is easy or complex and anything about that
 """
 
 gram_prompt = PromptTemplate(
