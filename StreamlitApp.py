@@ -5,34 +5,12 @@ import pandas as pd
 import streamlit as st
 from src.Mcq_Generator.MCQ_generator import final_chain  # Importing the final_chain
 import traceback
+from src.Mcq_Generator.utils import load_response_json,mcqs_to_dataframe
 
-# Read response_json from a file
-def load_response_json(file_path):
-    with open(file_path, 'r') as file:
-        return json.load(file)
 
 response_json_path = 'response.json'
 response_json = load_response_json(response_json_path)
 
-def mcqs_to_dataframe(mcqs):
-    data = []
-    for q_num, mcq_data in mcqs.items():
-        question = mcq_data['mcq']
-        option_a = mcq_data['options']['a']
-        option_b = mcq_data['options']['b']
-        option_c = mcq_data['options']['c']
-        option_d = mcq_data['options']['d']
-        correct_answer = mcq_data['options'][mcq_data['correct']]
-        data.append({
-            'Question Number': q_num,
-            'Question': question,
-            'Option A': option_a,
-            'Option B': option_b,
-            'Option C': option_c,
-            'Option D': option_d,
-            'Correct Answer': correct_answer
-        })
-    return pd.DataFrame(data)
 
 # Streamlit app
 st.title("MCQ Generator")
@@ -44,7 +22,7 @@ if uploaded_file is not None:
 
     count = st.number_input("Number of MCQs", min_value=1, max_value=10, value=3)
     complexity = st.selectbox("Complexity Level", ["simple", "medium", "hard"])
-    topic = st.text_input("Topic", "Machine learning")
+    topic = st.text_input("Topic", "Write Here")
 
     if st.button("Generate MCQs"):
         input_data = {
