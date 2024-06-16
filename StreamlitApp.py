@@ -6,14 +6,14 @@ import streamlit as st
 from src.Mcq_Generator.MCQ_generator import final_chain  # Importing the final_chain
 import traceback
 from src.Mcq_Generator.utils import load_response_json,mcqs_to_dataframe
-
+from src.Mcq_Generator.logger import log_task
 
 response_json_path = 'response.json'
 response_json = load_response_json(response_json_path)
 
 
 # Streamlit app
-st.title("MCQ Generator")
+st.title("Quiz MCQ Generator Using langchain")
 
 uploaded_file = st.file_uploader("Choose a text file", type="txt")
 if uploaded_file is not None:
@@ -43,10 +43,13 @@ if uploaded_file is not None:
 
             df = mcqs_to_dataframe(mcq_data_dict)
             st.write(df)
+            log_task("mcqs retrieve from LLM model")
 
             # Provide download link for the CSV
             csv = df.to_csv(index=False)
             st.download_button(label="Download MCQs as CSV", data=csv, file_name="mcqs.csv", mime="text/csv")
+            log_task("User download csv file")
+
         
         except Exception as e:
             st.error(f"An error occurred: {e}")
