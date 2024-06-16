@@ -1,42 +1,18 @@
 import os
 import ast
+import json
 import pandas as pd
 import streamlit as st
 from src.Mcq_Generator.MCQ_generator import final_chain  # Importing the final_chain
 import traceback
 
-response_json = {
-    "1": {
-        "mcq": "multiple choice question",
-        "options": {
-            "a": "choice here",
-            "b": "choice here",
-            "c": "choice here",
-            "d": "choice here",
-        },
-        "correct": "correct answer",
-    },
-    "2": {
-        "mcq": "multiple choice question",
-        "options": {
-            "a": "choice here",
-            "b": "choice here",
-            "c": "choice here",
-            "d": "choice here",
-        },
-        "correct": "correct answer",
-    },
-    "3": {
-        "mcq": "multiple choice question",
-        "options": {
-            "a": "choice here",
-            "b": "choice here",
-            "c": "choice here",
-            "d": "choice here",
-        },
-        "correct": "correct answer",
-    },
-}
+# Read response_json from a file
+def load_response_json(file_path):
+    with open(file_path, 'r') as file:
+        return json.load(file)
+
+response_json_path = 'response.json'
+response_json = load_response_json(response_json_path)
 
 def mcqs_to_dataframe(mcqs):
     data = []
@@ -76,7 +52,7 @@ if uploaded_file is not None:
             "complexity": complexity,
             "topic": topic,
             "paragraph": data,
-            "response_json": f"{response_json}"
+            "response_json": json.dumps(response_json)
         }
         
         try:
